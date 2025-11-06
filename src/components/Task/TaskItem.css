@@ -21,6 +21,7 @@
   color: #333;
   font-size: 0.95rem;
   word-break: break-word;
+  margin-right: 10px; 
 }
 
 .taskitem__text--done {
@@ -32,25 +33,31 @@
   background: #ff4d4d;
   color: white;
   border: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.85rem;
   transition: background 0.2s ease;
+  flex-shrink: 0; 
 }
 
 .taskitem__delete:hover {
   background: #e04343;
 }
 
+/* 🔹 Responsivo */
 @media (max-width: 600px) {
   .taskitem {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .taskitem__text {
+    font-size: 0.9rem;
   }
 
   .taskitem__delete {
-    align-self: flex-end;
+    padding: 6px 10px;
   }
 }
