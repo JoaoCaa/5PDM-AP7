@@ -1,13 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth } from './context/AuthContext'; // Removida a extensão .jsx
-import Header from './components/Layout/Header'; // Removida a extensão .jsx
-import Login from './components/Auth/Login'; // Removida a extensão .jsx
-import Home from './pages/Home'; // Removida a extensão .jsx
-import Profile from './pages/Profile'; // Removida a extensão .jsx
-// IMPORTANTE: Adicionando Register, que havíamos criado
-import Register from './components/Auth/Register'; // Removida a extensão .jsx
-
+import { useAuth } from './context/AuthContext'; 
+import Header from './components/Layout/Header'; 
+import Login from './components/Auth/Login'; 
+import Home from './pages/Home'; 
+import Profile from './pages/Profile'; 
+ 
 // Componente de Rota Protegida
 const PrivateRoute = ({ children }) => {
   const { currentUser, loading } = useAuth();
@@ -36,7 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} /> 
           
           {/* Rota de Registro - Usando o componente Register dedicado */}
-          <Route path="/register" element={<Register />} /> 
+          {/* <Route path="/register" element={<Register />} />  */}
 
           {/* Rota Principal Protegida */}
           <Route

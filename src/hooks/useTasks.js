@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase/firebaseConfig';
-import { collection, query, onSnapshot, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  addDoc,
+  deleteDoc,
+  doc
+} from 'firebase/firestore';
 import { useAuth } from '../context/AuthContext';
 
-export const useTasks = () => {
+export const useTasks = (subjectId = null) => {
   const { currentUser } = useAuth();
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Escuta as tarefas em tempo real
   useEffect(() => {
     if (!currentUser) {
       setTasks([]);
@@ -16,35 +23,41 @@ export const useTasks = () => {
       return;
     }
 
-    // Cria uma consulta para a coleção 'tasks' do Firestore
-    const q = query(collection(db, `users/${currentUser.uid}/tasks`));
+    // monta query filtrando por matéria (se fornecida)
+    const baseRef = collection(db, `users/${currentUser.uid}/tasks`);
+    const q = subjectId
+      ? query(baseRef, where('subjectId', '==', subjectId))
+      : query(baseRef);
 
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const tasksArray = [];
-      querySnapshot.forEach((doc) => {
-        tasksArray.push({ id: doc.id, ...doc.data() });
-      });
-      setTasks(tasksArray);
-      setLoading(false);
-    }, (error) => {
-        console.error("Erro ao buscar tarefas: ", error);
+    const unsubscribe = onSnapshot(
+      q,
+      (querySnapshot) => {
+        const tasksArray = [];
+        querySnapshot.forEach((snap) => {
+          tasksArray.push({ id: snap.id, ...snap.data() });
+        });
+        setTasks(tasksArray);
         setLoading(false);
-    });
+      },
+      (error) => {
+        console.error('Erro ao buscar tarefas: ', error);
+        setLoading(false);
+      }
+    );
 
     return () => unsubscribe();
-  }, [currentUser]);
+  }, [currentUser, subjectId]);
 
-  // Função para adicionar nova tarefa
-  const addTask = async (taskText) => {
+  const addTask = async (taskText, subjectId) => {
     if (!currentUser) return;
     await addDoc(collection(db, `users/${currentUser.uid}/tasks`), {
       text: taskText,
+      subjectId: subjectId || null,
       completed: false,
-      createdAt: new Date()
+      createdAt: new Date(),
     });
   };
 
-  // Função para deletar tarefa
   const deleteTask = async (id) => {
     if (!currentUser) return;
     await deleteDoc(doc(db, `users/${currentUser.uid}/tasks`, id));

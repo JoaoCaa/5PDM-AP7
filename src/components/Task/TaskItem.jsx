@@ -1,25 +1,24 @@
 import React from 'react';
 import { useTasks } from '../../hooks/useTasks';
+import './TaskItem.css'; // ✅ Importa o CSS
 
 function TaskItem({ task }) {
   const { deleteTask } = useTasks();
 
-  // Implementação futura: Adicionar lógica para alternar 'completed'
-  // const toggleTask = () => { /* ... lógica de update do Firestore ... */ };
-
   return (
-    <li style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px dotted #eee' }}>
-      <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+    <li className="taskitem">
+      <span
+        className={`taskitem__text ${task.completed ? 'taskitem__text--done' : ''}`}
+      >
         {task.text}
       </span>
-      <div>
-        {/* <button onClick={toggleTask} style={{ marginRight: '10px', cursor: 'pointer' }}>
-          {task.completed ? 'Desfazer' : 'Concluir'}
-        </button> */}
-        <button onClick={() => deleteTask(task.id)} style={{ color: 'red', cursor: 'pointer' }}>
-          Excluir
-        </button>
-      </div>
+
+      <button
+        onClick={() => deleteTask(task.id)}
+        className="taskitem__delete"
+      >
+        Excluir
+      </button>
     </li>
   );
 }

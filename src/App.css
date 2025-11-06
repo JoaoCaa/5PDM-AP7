@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  background-color: #4a90e2;
+  color: white;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #357abd;
+}
+
+input, select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  outline: none;
+}
+
+input:focus, select:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}

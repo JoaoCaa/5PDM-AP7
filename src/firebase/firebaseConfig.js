@@ -5,10 +5,10 @@ import { getFirestore } from "firebase/firestore";
 // Configuração do seu aplicativo Firebase
  
 const firebaseConfig = {
-  apiKey: "AIzaSyB_IWvq5BLtqSu8vhw-HwsULFT4SfdSy5o",
-  authDomain: "poa-8fb9b.firebaseapp.com", // Seu AuthDomain
-  projectId: "poa-8fb9b", // Seu Project ID
-  storageBucket: "poa-8fb9b.appspot.com",
+  apiKey: "AIzaSyCGAd81-1DQHHtwZqIHp6EUnipTrxISBoA",
+  authDomain: "ap-7-9f578.firebaseapp.com", // Seu AuthDomain
+  projectId: "ap-7-9f578", // Seu Project ID
+  storageBucket: "ap-7-9f578.appspot.com",
   messagingSenderId: "SEU_SENDER_ID",
   appId: "SEU_APP_ID"
 };

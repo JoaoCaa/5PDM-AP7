@@ -1,0 +1,58 @@
+.home {
+  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.home__header {
+  margin-bottom: 25px;
+}
+
+.home__title {
+  font-size: 2rem;
+  color: #007bff;
+  margin-bottom: 5px;
+}
+
+.home__welcome {
+  color: #555;
+  font-size: 1rem;
+}
+
+.home__filter {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.home__filter label {
+  font-weight: 500;
+  color: #333;
+}
+
+.home__filter select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home__filter select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
+}
+
+/* 🔹 Responsividade */
+@media (max-width: 600px) {
+  .home {
+    padding: 15px;
+  }
+
+  .home__title {
+    font-size: 1.6rem;
+  }
+}

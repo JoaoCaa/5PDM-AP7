@@ -1,0 +1,92 @@
+.subjects {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.subjects__title {
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+.subjects__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.subjects__input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.subjects__input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.15);
+  outline: none;
+}
+
+.subjects__add {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 15px;
+}
+
+.subjects__add:hover {
+  background: #0069d9;
+}
+
+.subjects__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subjects__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.subjects__delete {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.subjects__delete:hover {
+  background: #c0392b;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .subjects__form {
+    flex-direction: column;
+  }
+
+  .subjects__input,
+  .subjects__add {
+    font-size: 15px;
+    padding: 8px 10px; 
+  }
+}

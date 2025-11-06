@@ -1,29 +1,50 @@
 import React, { useState } from 'react';
 import { useTasks } from '../../hooks/useTasks';
+import { useSubjects } from '../../hooks/useSubjects';
+import './TaskForm.css'; // ✅ novo arquivo de estilo
 
 function TaskForm() {
   const [taskText, setTaskText] = useState('');
+  const [subjectId, setSubjectId] = useState('');
   const { addTask } = useTasks();
+  const { subjects } = useSubjects();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (taskText.trim() === '') return;
-
-    addTask(taskText.trim());
+    if (!taskText.trim() || !subjectId) {
+      alert('Por favor, selecione uma matéria antes de adicionar a tarefa.');
+      return;
+    }
+    addTask(taskText.trim(), subjectId);
     setTaskText('');
+    setSubjectId('');
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
+    <form className="taskform" onSubmit={handleSubmit}>
       <input
         type="text"
         value={taskText}
         onChange={(e) => setTaskText(e.target.value)}
         placeholder="O que precisa ser feito?"
-        style={{ padding: '10px', width: '300px', marginRight: '10px' }}
+        className="taskform__input"
       />
-      <button type="submit" style={{ padding: '10px 15px', cursor: 'pointer' }}>
-        Adicionar Tarefa
+
+      <select
+        value={subjectId}
+        onChange={(e) => setSubjectId(e.target.value)}
+        className="taskform__select"
+      >
+        <option value="">Selecione uma matéria</option>
+        {subjects.map((s) => (
+          <option key={s.id} value={s.id}>
+            {s.name}
+          </option>
+        ))}
+      </select>
+
+      <button type="submit" className="taskform__button">
+        Adicionar
       </button>
     </form>
   );
