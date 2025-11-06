@@ -53,7 +53,7 @@ function Login() {
             placeholder="seuemail@exemplo.com"
           />
 
-          <label>Senha</label>
+          <label>Senha (Pelo menos 6 caracteres)</label>
           <input
             type="password"
             value={password}
